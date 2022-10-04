@@ -1,21 +1,20 @@
-import axios from "axios";
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 import { LoginFormProps } from "../components/LoginForm/LoginForm.types";
+import { useLoginContext } from "../contexts/LoginContext/LoginContext";
+import auth from "../services/http/patika/endpoints/auth";
 
-export type LoginPageProps = {
-  onSuccess: (token: string) => void;
-};
+export type LoginPageProps = {};
 
 const LoginPage: FC<LoginPageProps> = (props) => {
   const navigate = useNavigate();
-  const handleLogin: LoginFormProps["onLogin"] = (values) => {
-    //axios ile post edilen request ile bir response donecek "then" localstorage'a kaydedicem
+  const { login } = useLoginContext();
 
-    axios.post("http://localhost:80/auth/login", values).then(({ data }) => {
-      props.onSuccess?.(data.token);
-      navigate("")
+  const handleLogin: LoginFormProps["onLogin"] = (values) => {
+    auth.login(values).then(({ data }) => {
+      login(data.token, data.username);
+      navigate("/");
     });
   };
 

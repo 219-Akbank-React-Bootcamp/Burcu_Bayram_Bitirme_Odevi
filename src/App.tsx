@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import LoginForm from "./components/LoginForm";
@@ -18,30 +18,25 @@ import TodoApp from "./Pages/TodoApp";
 
 import AddBoard from "./components/AddBoard";
 import Board from "./components/Board";
+import { useLoginContext } from "./contexts/LoginContext/LoginContext";
 
 function App() {
-  const [isLoggedin, setIsLoggedin] = useState<boolean>(false);
-  const [token, setToken] = useState<string>("");
+  // const [isLoggedin, setIsLoggedin] = useState<boolean>(false);
+  // const [token, setToken] = useState<string>("");
 
-  const handleLogin = (token: string) => {
-    setToken(token);
-    setIsLoggedin(true);
-  };
+  const { isLoggedIn, login, logout } = useLoginContext();
 
-  const handleLogout = () => {
-    setToken("");
-    setIsLoggedin(false);
-  };
+  
 
   return (
     <div className="App">
-      {!isLoggedin ? (
+      {!isLoggedIn ? (
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LoginPage onSuccess={handleLogin} />} />
+            <Route path="/" element={<LoginPage />} />
             <Route
               path="/login"
-              element={<LoginPage onSuccess={handleLogin} />}
+              element={<LoginPage />}
             />
             <Route path="/addboard" element={<AddBoard />} /> //Login sonrasına
             taşınacak!!!!
@@ -53,7 +48,7 @@ function App() {
       ) : (
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<TodoApp onLogout={handleLogout} />} />
+            <Route path="/" element={<TodoApp />} />
           </Routes>
         </BrowserRouter>
       )}

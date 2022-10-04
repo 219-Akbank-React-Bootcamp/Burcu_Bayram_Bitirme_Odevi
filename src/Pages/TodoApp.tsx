@@ -1,16 +1,19 @@
 import React, { FC } from "react";
 import Button from "../components/Button";
+import { useLoginContext } from "../contexts/LoginContext/LoginContext";
 
-export type TodoAppProps = {
-  onLogout: () => void;
-};
+export type TodoAppProps = {};
 
 const TodoApp: FC<TodoAppProps> = (props) => {
+  const { logout, username } = useLoginContext();
+
   const handleLogout = () => {
-    props.onLogout?.();
+    logout();
   };
+
   return (
     <div>
+      Hoşgeldin {username}
       <Button onClick={handleLogout}>Logout</Button>{" "}
     </div>
   );

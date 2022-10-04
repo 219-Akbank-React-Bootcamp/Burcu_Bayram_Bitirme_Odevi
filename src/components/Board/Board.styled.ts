@@ -7,6 +7,7 @@ margin-top: 10px;
 border-radius: 5px;
 box-sizing: border-box;
 
+
 .board-name{
     color: white;
     
@@ -17,7 +18,7 @@ box-sizing: border-box;
     
 .row-bottom{
     margin-top: 20px;
-    padding-top:20px;
+    padding:20px 20px;
     background-color: white;   
 }
 
