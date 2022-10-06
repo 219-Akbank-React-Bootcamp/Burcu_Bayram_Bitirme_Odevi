@@ -1,6 +1,9 @@
 import React, { useState, FC } from "react";
+
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
+import Card from "../Card/Card";
+import DetailedCard from "../DetailedCard";
 import List from "../List";
 import { StyledCard } from "../List/List.styled";
 import { Styled } from "./Board.styled";
@@ -10,12 +13,12 @@ const lists = [
   {
     title: "List Adı Güncel",
     boardId: 1,
-    card: <div>Card content</div>,
+    card: <Card title={""} />,
   },
   {
     title: "Liste 2",
     boardId: 2,
-    card: <div>Card content Liste 2</div>,
+    card: <Card title={""} />,
   },
 ];
 
@@ -62,19 +65,21 @@ const Board: FC<BoardProps> = () => {
 
         <div className="row-bottom ">
           <div className="col">
+            
             <Styled>
               {lists.map((list) => {
                 return (
-                  <button
-                    className={list.title === activeList ? "active list-title" : "list-title"}
-                    onClick={() => handleChangeActiveList(list.title)}
-                  >
-                    {list.title}
-                  </button>
+                  <List title={list.title} />
+                  // <button
+                  //   className={list.title === activeList ? "active list-title" : "list-title"}
+                  //   onClick={() => handleChangeActiveList(list.title)}
+                  // >
+                  //   {list.title}
+                  // </button>
                 );
               })}
 
-              <div>{lists.find((list) => list.title === activeList)?.card}</div>
+            {/* <div>{lists.find((list) => list.title === activeList)?.card}</div> */}
             </Styled>
 
             <button className=" btn btn-outline-primary  " type="button">
