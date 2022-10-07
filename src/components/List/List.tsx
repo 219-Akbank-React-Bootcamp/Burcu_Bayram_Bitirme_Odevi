@@ -8,6 +8,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import Input from "../Input";
 import { card } from "../../services/http/patika/endpoints/card";
 import { DetailedCardProps } from "../DetailedCard/DetailedCard.types";
+import { useBoardContext } from "../../contexts/BoardContext/BoardContext";
 
 const List: FC<ListProps> = (props) => {
   //yeni card ekleme
@@ -16,10 +17,10 @@ const List: FC<ListProps> = (props) => {
     setValue(e.target.value);
   };
 
-  const [cards, setCards] = useState<Array<DetailedCardProps>>([]);
+  const BoardCtx = useBoardContext();
 
   const handleAddCard = (card: any) => {
-    setCards((prev) => [...prev, card]);
+    BoardCtx.dispatches.addCard(card);
   };
 
   const handleAddClick = () => {
@@ -33,19 +34,13 @@ const List: FC<ListProps> = (props) => {
       });
   };
 
-  // useEffect(() => {card.get().then(({}) => {
-  //   setCards(title);
-  // },
-  // [])
-  
-
   return (
     <StyledCard className="card">
       <div className="addNewCard">
         <Input placeholder="Card title" type="text" onChange={handleChange} />
         <Button onClick={handleAddClick}>Save</Button>
       </div>
-      {cards.map((card) => (
+      {BoardCtx.state.card.map((card) => (
         <div className="card-body">
           <h5 contentEditable="true" className="card-title">
             {card.title}{" "}

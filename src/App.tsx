@@ -19,6 +19,7 @@ import AddBoardPage from "./Pages/AddBoardPage";
 import AddBoard from "./components/AddBoard";
 import Board from "./components/Board";
 import { useLoginContext } from "./contexts/LoginContext/LoginContext";
+import { BoardProvider } from "./contexts/BoardContext/BoardContext";
 
 function App() {
   // const [isLoggedin, setIsLoggedin] = useState<boolean>(false);
@@ -26,18 +27,13 @@ function App() {
 
   const { isLoggedIn, login, logout } = useLoginContext();
 
-  
-
   return (
     <div className="App">
       {!isLoggedIn ? (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LoginPage />} />
-            <Route
-              path="/login"
-              element={<LoginPage />}
-            />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/addboard" element={<AddBoard />} /> //Login sonrasına
             taşınacak!!!!
             <Route path="/board" element={<Board />} /> //Login sonrasına
@@ -46,11 +42,13 @@ function App() {
           </Routes>
         </BrowserRouter>
       ) : (
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<AddBoardPage />} />
-          </Routes>
-        </BrowserRouter>
+        <BoardProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<AddBoardPage />} />
+            </Routes>
+          </BrowserRouter>
+        </BoardProvider>
       )}
 
       {/* <Link to="/login" /> */}

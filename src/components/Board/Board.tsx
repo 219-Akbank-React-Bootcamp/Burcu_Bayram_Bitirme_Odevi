@@ -32,11 +32,7 @@ const Board: FC<BoardProps> = () => {
     navigate("/addboard");
   };
 
-  // const handleEditListTitle = ()=>{
-  //   const findListTitle = listTitle.find((title) => title.id === id );
-  //   setListTitle(findListTitle)
 
-  // } aşağıda List'in onClick'ine verilecek
 
   const [activeList, setActiveList] = useState<string>(lists[0].title); //hangisinin etkin olduğunu gosteren state
   const handleChangeActiveList = (title: string) => {
@@ -69,7 +65,9 @@ const Board: FC<BoardProps> = () => {
             <Styled>
               {lists.map((list) => {
                 return (
-                  <List title={list.title} />
+                  <List title={list.title}              
+                  
+                  />
                   // <button
                   //   className={list.title === activeList ? "active list-title" : "list-title"}
                   //   onClick={() => handleChangeActiveList(list.title)}
