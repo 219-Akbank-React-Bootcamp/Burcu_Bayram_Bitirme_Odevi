@@ -5,11 +5,12 @@ import { CreateBoardRequestPayload, UpdateBoardRequestPayload } from "./types"
 export const create = (payload: CreateBoardRequestPayload) =>
     service.post("addboard", payload)
 
-export const destroy = () => service.delete(":id")
+export const destroy = (id: number) => service.delete(`board/${id}`)
 
-export const get = () => service.get(":id")
+export const get = (id: number) => service.get(`board/${id}`)
 
-export const getById = () => service.get(":id")
+export const getById = (id: number) => service.get(`board/${id}`)
 
-export const update = (payload: UpdateBoardRequestPayload) =>
-    service.put(":id", payload)
+export const update = (id: number, payload: UpdateBoardRequestPayload) =>
+    service.put(`board/${id}`, payload)
+
