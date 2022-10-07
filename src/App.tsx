@@ -14,7 +14,7 @@ import {
 } from "react-router-dom";
 import RegisterPage from "./Pages/RegisterPage";
 import LoginPage from "./Pages/LoginPage";
-import TodoApp from "./Pages/TodoApp";
+import AddBoardPage from "./Pages/AddBoardPage";
 
 import AddBoard from "./components/AddBoard";
 import Board from "./components/Board";
@@ -48,7 +48,7 @@ function App() {
       ) : (
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<TodoApp />} />
+            <Route path="/" element={<AddBoardPage />} />
           </Routes>
         </BrowserRouter>
       )}
