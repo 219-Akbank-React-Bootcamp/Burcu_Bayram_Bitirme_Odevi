@@ -1,3 +1,18 @@
+# Kanban Board App
+
+## Kullanilan Araclar
+
+- TypeScript
+- Create react app
+- React Router
+- Bootstrap
+- Axios
+
+### BOARD
+### LIST
+### CARD
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
