@@ -3,6 +3,7 @@ import React, { useState, FC } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import Card from "../Card/Card";
+import CardListItem from "../CardListItem";
 import DetailedCard from "../DetailedCard";
 import List from "../List";
 import { StyledCard } from "../List/List.styled";
@@ -65,9 +66,9 @@ const Board: FC<BoardProps> = () => {
             <Styled>
               {lists.map((list) => {
                 return (
-                  <List title={list.title}              
-                  
-                  />
+                  <List title={list.title}>
+                    
+                  </List>
                   // <button
                   //   className={list.title === activeList ? "active list-title" : "list-title"}
                   //   onClick={() => handleChangeActiveList(list.title)}

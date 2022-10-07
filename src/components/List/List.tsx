@@ -9,6 +9,7 @@ import Input from "../Input";
 import { card } from "../../services/http/patika/endpoints/card";
 import { DetailedCardProps } from "../DetailedCard/DetailedCard.types";
 import { useBoardContext } from "../../contexts/BoardContext/BoardContext";
+import CardListItem from "../CardListItem";
 
 const List: FC<ListProps> = (props) => {
   //yeni card ekleme
@@ -41,16 +42,17 @@ const List: FC<ListProps> = (props) => {
         <Button onClick={handleAddClick}>Save</Button>
       </div>
       {BoardCtx.state.card.map((card) => (
-        <div className="card-body">
-          <h5 contentEditable="true" className="card-title">
-            {card.title}{" "}
-            <button className=" btn btn-outline-primary" type="button">
-              <span className="material-symbols-outlined align-top">
-                Delete
-              </span>
-            </button>
-          </h5>
-        </div>
+        <CardListItem title={card.title}/>
+        // <div className="card-body">
+        //   <h5 contentEditable="true" className="card-title">
+        //     {card.title}{" "}
+        //     <button className=" btn btn-outline-primary" type="button">
+        //       <span className="material-symbols-outlined align-top">
+        //         Delete
+        //       </span>
+        //     </button>
+        //   </h5>
+        // </div>
       ))}
 
       {/* <p className="card-text">label color</p>
