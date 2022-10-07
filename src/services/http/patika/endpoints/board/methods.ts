@@ -1,15 +1,15 @@
 import service from "../../instance"
-import { CreateBoardRequestPayload, DestroyBoardRequestPayload, GetByIdBoardRequestPayload, UpdateBoardRequestPayload } from "./types"
+import { CreateBoardRequestPayload, UpdateBoardRequestPayload } from "./types"
 
 
 export const create = (payload: CreateBoardRequestPayload) =>
     service.post("addboard", payload)
 
-export const destroy = (payload: DestroyBoardRequestPayload) =>
-    service.post(":id", payload)
+export const destroy = () => service.delete(":id")
 
-export const getById = (payload: GetByIdBoardRequestPayload) =>
-    service.post(":id", payload)
+export const get = () => service.get(":id")
+
+export const getById = () => service.get(":id")
 
 export const update = (payload: UpdateBoardRequestPayload) =>
-    service.post(":id", payload)
+    service.put(":id", payload)

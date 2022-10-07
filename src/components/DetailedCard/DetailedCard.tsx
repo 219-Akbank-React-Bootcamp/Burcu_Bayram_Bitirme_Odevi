@@ -24,8 +24,8 @@ const DetailedCard: FC<DetailedCardProps> = (props) => {
         title: value,
         listId: 0,
       })
-      .then(({ data }) => {
-        handleAddCard(data);
+      .then(({ title }) => {
+        handleAddCard(title);
       });
   };
 

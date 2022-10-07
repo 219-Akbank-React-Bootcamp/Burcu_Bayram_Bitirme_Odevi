@@ -1,18 +1,15 @@
 import service from "../../instance"
-import { CreateListRequestPayload, DestroyListRequestPayload, GetByIdListRequestPayload, GetListRequestPayload, UpdateListRequestPayload } from "./types"
+import { CreateListRequestPayload, UpdateListRequestPayload } from "./types"
 
 
 export const create = (payload: CreateListRequestPayload) =>
     service.post("list", payload)
 
-export const destroy = (payload: DestroyListRequestPayload) =>
-    service.post(":id", payload)
+export const destroy = () => service.delete(":id")
 
-export const get = (payload: GetListRequestPayload) =>
-    service.post("list", payload)
+export const get = () => service.get("list")
 
-export const getById = (payload: GetByIdListRequestPayload) =>
-    service.post(":id", payload)
+export const getById = () => service.get(":id")
 
 export const update = (payload: UpdateListRequestPayload) =>
-    service.post(":id", payload)
+    service.put(":id", payload)

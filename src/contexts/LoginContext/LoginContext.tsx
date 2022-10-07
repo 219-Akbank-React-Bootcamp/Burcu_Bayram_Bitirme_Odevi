@@ -4,7 +4,9 @@ import {
   FC,
   PropsWithChildren,
   useContext,
+  useEffect,
 } from "react";
+import instance from "../../services/http/patika/instance";
 import { ContextType, StateType } from "./types";
 
 const initialState: StateType = {
@@ -21,10 +23,36 @@ export const LoginContext = createContext<ContextType>({
 });
 
 export const LoginProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [state, setstate] = useState<StateType>(initialState);
+  const [state, setState] = useState<StateType>(initialState);
+
+  useEffect(() => {
+    instance.interceptors.request.use((config) => {
+      const _config = { ...config };
+      _config.headers = {
+        ...config.headers,
+        authorization: "Bearer " + state.token,
+      };
+      return _config;
+    });
+
+    // instance.interceptors.response.use(
+    //   (response) => {return response},
+    //   (error) => {
+    //     if ([500, 401, 403].includes(error.response.status)) {
+    //       //hata anında direk login ekranına yönlendirmesi için
+    //       setState((prev) => ({
+    //         ...prev,
+    //         isLoggedIn: false,
+    //         token: "",
+    //         username: "",
+    //       }));
+    //     }
+    //   }
+    // );
+  }, [state.token]);
 
   const login = (token: string, username: string) => {
-    setstate({
+    setState({
       username,
       token,
       isLoggedIn: true,
@@ -35,7 +63,7 @@ export const LoginProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const logout = () => {
-    setstate({
+    setState({
       username: "",
       token: "",
       isLoggedIn: false,

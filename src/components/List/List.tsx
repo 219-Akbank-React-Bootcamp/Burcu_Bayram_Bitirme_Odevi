@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Button from "../Button";
 import Card from "../Card";
 import { Styled, StyledCard } from "./List.styled";
@@ -28,15 +28,22 @@ const List: FC<ListProps> = (props) => {
         title: value,
         listId: 0,
       })
-      .then(({ data }) => {
-        handleAddCard(data);
+      .then(({ title }) => {
+        handleAddCard(title);
       });
   };
+
+  // useEffect(() => {card.get().then(({}) => {
+  //   setCards(title);
+  // },
+  // [])
+  
 
   return (
     <StyledCard className="card">
       <div className="addNewCard">
-        <Input placeholder="Card title" type="text" />;<Button>Save</Button>
+        <Input placeholder="Card title" type="text" onChange={handleChange} />
+        <Button onClick={handleAddClick}>Save</Button>
       </div>
       {cards.map((card) => (
         <div className="card-body">
@@ -44,7 +51,7 @@ const List: FC<ListProps> = (props) => {
             {card.title}{" "}
             <button className=" btn btn-outline-primary" type="button">
               <span className="material-symbols-outlined align-top">
-                delete
+                Delete
               </span>
             </button>
           </h5>

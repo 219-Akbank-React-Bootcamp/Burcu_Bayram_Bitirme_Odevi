@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react"
+import React, { PropsWithChildren } from "react"
 
 export type ListProps = PropsWithChildren<{
     onClick?: React.MouseEvent<HTMLInputElement>;
@@ -7,4 +7,9 @@ export type ListProps = PropsWithChildren<{
     boardId?: number
     order?: number
 }>
+
+
+function useEffect(effect: EffectCallback, deps?: DependencyList): void;
+
+type EffectCallback = () => (void | (() => void | undefined));
 

@@ -6,18 +6,6 @@ export type CreateCardRequestPayload = {
     order?: number
 }
 
-export type DestroyCardRequestPayload = {
-    id: number
-}
-
-export type GetCardRequestPayload = {
-    listId?: number
-}
-
-export type GetByIdCardRequestPayload = {
-    id: number
-}
-
 export type UpdateCardRequestPayload = {
     title?: string
     listId?: number
@@ -28,8 +16,14 @@ export type UpdateCardRequestPayload = {
 }
 
 export type CreateCardResponsePayload = {
-    data: {
-        title: string
-        id: number
-    }
+
+    id: number;
+    title: string;
+    description: string;
+    duedate: Date;
+    comments: Comment[];
+    listId: number;
+    order: number;
+
+
 }

@@ -4,17 +4,6 @@ export type CreateListRequestPayload = {
     order?: number
 }
 
-export type DestroyListRequestPayload = {
-    id: number
-}
-
-export type GetListRequestPayload = {
-    boardId: number
-}
-
-export type GetByIdListRequestPayload = {
-    id: number
-}
 
 export type UpdateListRequestPayload = {
     title?: string
