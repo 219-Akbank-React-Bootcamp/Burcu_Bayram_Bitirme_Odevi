@@ -20,12 +20,25 @@ import AddBoard from "./components/AddBoard";
 import Board from "./components/Board";
 import { useLoginContext } from "./contexts/LoginContext/LoginContext";
 import { BoardProvider } from "./contexts/BoardContext/BoardContext";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 function App() {
   // const [isLoggedin, setIsLoggedin] = useState<boolean>(false);
   // const [token, setToken] = useState<string>("");
 
   const { isLoggedIn, login, logout } = useLoginContext();
+
+  function onDragEnd(result: any) {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) return;
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return;
+  }
 
   return (
     <div className="App">
@@ -34,18 +47,16 @@ function App() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/addboard" element={<AddBoard />} /> //Login sonrasına
-            taşınacak!!!!
-            <Route path="/board" element={<Board />} /> //Login sonrasına
-            taşınacak!!!!
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/addboard" element={<AddBoard />} />
+            <Route path="/board" element={<Board />} />
           </Routes>
         </BrowserRouter>
       ) : (
         <BoardProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<AddBoardPage />} />
+              {/* <Route path="/" element={<AddBoardPage />} /> */}
             </Routes>
           </BrowserRouter>
         </BoardProvider>

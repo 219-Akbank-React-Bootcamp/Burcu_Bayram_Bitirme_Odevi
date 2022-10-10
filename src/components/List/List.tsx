@@ -42,7 +42,7 @@ const List: FC<ListProps> = (props) => {
         <Button onClick={handleAddClick}>Save</Button>
       </div>
       {BoardCtx.state.card.map((card) => (
-        <CardListItem title={card.title}/>
+        <CardListItem title={card.title} />
         // <div className="card-body">
         //   <h5 contentEditable="true" className="card-title">
         //     {card.title}{" "}
@@ -65,6 +65,28 @@ const List: FC<ListProps> = (props) => {
         <a href="#" className="card-link">
           Another link
         </a> */}
+      {/* <Draggable draggableId={id.toString()} index={order}>
+        {(provided, snapshot) => {
+          return (
+            <div
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              style={{
+                userSelect: "none",
+                padding: 16,
+                margin: "0 0  8px 0",
+                minHeight: "50px",
+                backgroundColor: snapshot.isDragging ? "#263B4A" : "#456C86",
+                color: "white",
+                ...provided.draggableProps.style,
+              }}
+            >
+              <li>{props.title}</li>
+            </div>
+          );
+        }}
+      </Draggable> */}
     </StyledCard>
   );
 };

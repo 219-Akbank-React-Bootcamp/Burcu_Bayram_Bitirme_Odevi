@@ -45,6 +45,9 @@ export const BoardProvider: FC<PropsWithChildren> = ({ children }) => {
       card: { ...prev.card, card },
     }));
   };
+
+
+
   return (
     <BoardContext.Provider value={{ state, dispatches }}>
       {children}
