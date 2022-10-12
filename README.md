@@ -8,10 +8,9 @@
 - Bootstrap
 - Axios
 
-### BOARD
-### LIST
-### CARD
-
+### Components 
+BOARD, LIST, CARD
+### For the backend of the application: https://github.com/haandev/patika-kanban-api
 
 # Getting Started with Create React App
 
