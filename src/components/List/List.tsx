@@ -8,8 +8,14 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import Input from "../Input";
 import { card } from "../../services/http/patika/endpoints/card";
 import { DetailedCardProps } from "../DetailedCard/DetailedCard.types";
-import { useBoardContext } from "../../contexts/BoardContext/BoardContext";
+import {
+  BoardContext,
+  useBoardContext,
+} from "../../contexts/BoardContext/BoardContext";
 import CardListItem from "../CardListItem";
+import { CreateListRequestPayload } from "../../services/http/patika/endpoints/list/types";
+import { list } from "../../services/http/patika/endpoints/list";
+
 
 const List: FC<ListProps> = (props) => {
   //yeni card ekleme
@@ -20,11 +26,24 @@ const List: FC<ListProps> = (props) => {
 
   const BoardCtx = useBoardContext();
 
+  const handleAddList = (list:any) => {
+    BoardCtx.dispatches.addList(list);
+  };
+
+  const handleAddListClick = (e: any) => {
+    list
+      .create({
+        title: value,
+        boardId: 0,
+      })
+      .then((title) => handleAddList(title.data));
+  };
+
   const handleAddCard = (card: any) => {
     BoardCtx.dispatches.addCard(card);
   };
 
-  const handleAddClick = () => {
+  const handleAddClick = (e: any) => {
     card
       .create({
         title: value,
@@ -36,9 +55,19 @@ const List: FC<ListProps> = (props) => {
   };
 
   return (
-    <StyledCard className="card">
+    <div>
+      <div className="addNewList">
+        <Input
+          placeholder="List title"
+          type="text"
+          onChange={handleChange}
+          value={value}
+        />
+        <Button onClick={handleAddListClick}>Save</Button>
+      </div>
+      ;
       <div className="addNewCard">
-        <Input placeholder="Card title" type="text" onChange={handleChange} />
+        <Input placeholder="List title" type="text" onChange={handleChange} />
         <Button onClick={handleAddClick}>Save</Button>
       </div>
       {BoardCtx.state.card.map((card) => (
@@ -54,7 +83,7 @@ const List: FC<ListProps> = (props) => {
         //   </h5>
         // </div>
       ))}
-
+      
       {/* <p className="card-text">label color</p>
         <h6 className="card-subtitle mb-2 text-muted">Test Card title</h6>
         <p className="card-text">date</p>
@@ -87,7 +116,7 @@ const List: FC<ListProps> = (props) => {
           );
         }}
       </Draggable> */}
-    </StyledCard>
+    </div>
   );
 };
 

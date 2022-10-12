@@ -20,7 +20,6 @@ import AddBoard from "./components/AddBoard";
 import Board from "./components/Board";
 import { useLoginContext } from "./contexts/LoginContext/LoginContext";
 import { BoardProvider } from "./contexts/BoardContext/BoardContext";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 function App() {
   // const [isLoggedin, setIsLoggedin] = useState<boolean>(false);
@@ -48,15 +47,15 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/addboard" element={<AddBoard />} />
-            <Route path="/board" element={<Board />} />
           </Routes>
         </BrowserRouter>
       ) : (
         <BoardProvider>
           <BrowserRouter>
             <Routes>
-              {/* <Route path="/" element={<AddBoardPage />} /> */}
+              {/* <Route path="/addboard" element={<AddBoardPage />} /> */}
+              <Route path="/addboard" element={<AddBoard />} />
+              <Route path="/board" element={<Board />} />
             </Routes>
           </BrowserRouter>
         </BoardProvider>

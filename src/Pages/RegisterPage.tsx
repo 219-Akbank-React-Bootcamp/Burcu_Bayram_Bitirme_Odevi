@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const handleRegister: RegisterFormProps["onRegister"] = (values) => {
     auth.register(values).then((data) => {
       login(data.data.token, data.data.username);
-      navigate("/");
+      navigate("/addboard");
     });
   };
 

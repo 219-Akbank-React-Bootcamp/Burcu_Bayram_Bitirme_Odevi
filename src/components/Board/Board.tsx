@@ -8,6 +8,7 @@ import List from "../List";
 import { StyledCard } from "../List/List.styled";
 import { Styled } from "./Board.styled";
 import { BoardProps } from "./Board.types";
+import { CreateListRequestPayload } from "../../services/http/patika/endpoints/list/types";
 import {
   DragDropContext,
   Droppable,
@@ -15,6 +16,10 @@ import {
   DropReason,
   DropResult,
 } from "react-beautiful-dnd";
+import { list } from "../../services/http/patika/endpoints/list";
+import Input from "../Input";
+import { useBoardContext } from "../../contexts/BoardContext/BoardContext";
+import { StateType } from "../../contexts/BoardContext/types";
 
 const lists = [
   {
@@ -41,10 +46,24 @@ const Board = () => {
     navigate("/addboard");
   };
 
+  //yeni liste ekleme
+  const [value, setValue] = useState<string>("");
+  const handleChange = (e: any) => {
+    setValue(e.target.value);
+  };
+
+  const BoardCtx = useBoardContext();
+
+  const handleAddList = () => {
+    <List title={""} id={0} />;
+  };
+
   const [activeList, setActiveList] = useState<string>(lists[0].title); //hangisinin etkin olduğunu gosteren state
   const handleChangeActiveList = (title: string) => {
     setActiveList(title);
   };
+
+  //DnD function
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
@@ -98,6 +117,51 @@ const Board = () => {
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="container_dnd">
+            <div>
+              <button
+                className="addListBtn btn btn-outline-primary"
+                type="button"
+                onClick={handleAddList}
+              >
+                <span className="material-symbols-outlined align-top">add</span>
+                Add another list
+              </button>
+              <Styled>
+                {BoardCtx.state.list.map((list) => (
+                  <List title={list.title} id={0} />
+                  // <div className="card-body">
+                  //   <h5 contentEditable="true" className="card-title">
+                  //     {card.title}{" "}
+                  //     <button className=" btn btn-outline-primary" type="button">
+                  //       <span className="material-symbols-outlined align-top">
+                  //         Delete
+                  //       </span>
+                  //     </button>
+                  //   </h5>
+                  // </div>
+                ))}
+
+                {/* {lists.map((list) => {
+                  return (
+                    <div>
+                      <List title={list.title} id={0} />
+                      <div
+                        className={
+                          list.title === activeList
+                            ? "active list-title"
+                            : "list-title"
+                        }
+                        onClick={() => handleChangeActiveList(list.title)}
+                      >
+                        {list.title}
+                      </div>
+                    </div>
+                  );
+                })} */}
+
+                {/* <div>{lists.find((list) => list.title === activeList)?.card}</div> */}
+              </Styled>
+            </div>
             <Droppable droppableId="col-1">
               {(provided) => (
                 <div
@@ -106,30 +170,13 @@ const Board = () => {
                   {...provided.droppableProps}
                 >
                   {lists.map((cardItem, index) => (
-                    <CardListItem
-                      cardItem={cardItem}
-                      key={cardItem.title}
-                      index={index}
-                    />
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-
-            <Droppable droppableId="col-2">
-              {(provided) => (
-                <div
-                  className="col-2"
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {lists.map((cardItem, index) => (
-                    <CardListItem
-                      cardItem={cardItem}
-                      key={cardItem.title}
-                      index={index}
-                    />
+                    <Styled>
+                      <CardListItem
+                        cardItem={cardItem}
+                        key={cardItem.title}
+                        index={index}
+                      />
+                    </Styled>
                   ))}
                   {provided.placeholder}
                 </div>
@@ -147,32 +194,10 @@ const Board = () => {
         >
           <DragDropContext
             onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-          >
+          > */}
 
-            <div className="col">
-              <Styled>
-                {lists.map((list) => {
-                  return (
-                    <List title={list.title} id={0} />
-                    // <button
-                    //   className={list.title === activeList ? "active list-title" : "list-title"}
-                    //   onClick={() => handleChangeActiveList(list.title)}
-                    // >
-                    //   {list.title}
-                    // </button>
-                  );
-                })}
-
-                {/* <div>{lists.find((list) => list.title === activeList)?.card}</div> */}
-        {/* </Styled>
-
-              <button className=" btn btn-outline-primary  " type="button">
-                <span className="material-symbols-outlined align-top">add</span>
-                Add another list
-              </button>
-            </div>
-          </DragDropContext>
-        </div> */}
+        {/* </DragDropContext> */}
+        {/* </div> */}
       </div>
     </Styled>
   );

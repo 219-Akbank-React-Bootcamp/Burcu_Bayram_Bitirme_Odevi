@@ -37,12 +37,12 @@ const CardListItem = (props: any, id: any, index: number, title: string) => {
         <StyledInput
           onChange={handleChange}
           value={cardItemValue}
-          placeholder={"Add a card"}
+          placeholder={"Card title"}
           type={"text"}
         />
       </div>
       <div>
-        <Button type="button" className="btn btn-light" onClick={handleClick}>
+        <Button type="button" className="btn-light" onClick={handleClick}>
           Add a card
         </Button>
       </div>
