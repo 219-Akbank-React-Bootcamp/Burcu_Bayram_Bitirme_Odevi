@@ -7,10 +7,11 @@
 - React Router
 - Bootstrap
 - React-beautiful-dnd (https://github.com/atlassian/react-beautiful-dnd)
+- React Context
 - Axios
 
 ### Components 
-BOARD, LIST, CARD
+BOARD, LIST, CARDLISTITEM, DETAILEDCARD
 
 ### For the backend of the application: https://github.com/haandev/patika-kanban-api (MySQL)
 To run API: Use MySQL client or run Docker and docker-compose up, listens "http://localhost:80/"
