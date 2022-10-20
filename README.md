@@ -9,6 +9,7 @@
 - React-beautiful-dnd (https://github.com/atlassian/react-beautiful-dnd)
 - React Context
 - Axios
+- Styled components (https://styled-components.com/)
 
 ### Components 
 BOARD, LIST, CARDLISTITEM, DETAILEDCARD
