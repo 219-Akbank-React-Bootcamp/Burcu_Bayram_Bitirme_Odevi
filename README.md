@@ -13,8 +13,7 @@
 BOARD, LIST, CARD
 
 ### For the backend of the application: https://github.com/haandev/patika-kanban-api (MySQL)
-To run API: Use MySQL client or run Docker and docker-compose up
-Listens "http://localhost:80/"
+To run API: Use MySQL client or run Docker and docker-compose up, listens "http://localhost:80/"
 
 # Getting Started with Create React App
 
