@@ -45,15 +45,6 @@ list-style: none;
     color: white;
 }
     
-.row-bottom{
-    margin-top: 20px;
-    padding:20px 20px;
-    background-color: white;      
-    height: 100%;
-    display: flex;
-    
-}
-
 .boardsbtn{
     width: 100px;
 }

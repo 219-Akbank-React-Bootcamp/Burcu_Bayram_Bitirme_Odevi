@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react"
 
 export type CardListItemProps = PropsWithChildren<{
-    id: number
+    id?: number
     title: string
     listId?: number
     description?: string

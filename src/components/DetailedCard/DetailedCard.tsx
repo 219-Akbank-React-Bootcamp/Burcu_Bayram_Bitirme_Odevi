@@ -21,6 +21,7 @@ const DetailedCard: FC<DetailedCardProps> = (props) => {
   const handleAddClick = () => {
     card
       .create({
+        id:0,
         title: value,
         listId: 0,
       })

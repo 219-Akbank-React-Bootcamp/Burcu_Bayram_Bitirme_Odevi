@@ -25,12 +25,12 @@ const lists = [
   {
     title: "List Adı Güncel",
     boardId: 1,
-    card: <Card title={""} />,
+    card: <CardListItem title={""} />,
   },
   {
     title: "Liste 2",
     boardId: 2,
-    card: <Card title={""} />,
+    card: <CardListItem title={""} />,
   },
 ];
 
@@ -140,26 +140,8 @@ const Board = () => {
                   //   </h5>
                   // </div>
                 ))}
-
-                {/* {lists.map((list) => {
-                  return (
-                    <div>
-                      <List title={list.title} id={0} />
-                      <div
-                        className={
-                          list.title === activeList
-                            ? "active list-title"
-                            : "list-title"
-                        }
-                        onClick={() => handleChangeActiveList(list.title)}
-                      >
-                        {list.title}
-                      </div>
-                    </div>
-                  );
-                })} */}
-
-                {/* <div>{lists.find((list) => list.title === activeList)?.card}</div> */}
+                
+           
               </Styled>
             </div>
             <Droppable droppableId="col-1">
@@ -184,21 +166,9 @@ const Board = () => {
             </Droppable>
           </div>
         </DragDropContext>
-        {/* <div
-          className="row-bottom "
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            height: "100%",
-          }}
-        >
-          <DragDropContext
-            onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-          > */}
-
-        {/* </DragDropContext> */}
-        {/* </div> */}
+        
       </div>
+  
     </Styled>
   );
 };

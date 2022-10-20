@@ -17,7 +17,7 @@ justify-content: space-between;
 .eye{
     width: 35px;
     align-self: center;
-    text-aling: center;
+    text-align: center;
     outline:none;
     border:none;
     background-color: white;

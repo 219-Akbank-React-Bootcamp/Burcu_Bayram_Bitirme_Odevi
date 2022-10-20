@@ -46,8 +46,6 @@ export const BoardProvider: FC<PropsWithChildren> = ({ children }) => {
     }));
   };
 
-
-
   return (
     <BoardContext.Provider value={{ state, dispatches }}>
       {children}

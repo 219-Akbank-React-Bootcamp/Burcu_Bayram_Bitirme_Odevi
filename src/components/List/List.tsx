@@ -16,17 +16,18 @@ import CardListItem from "../CardListItem";
 import { CreateListRequestPayload } from "../../services/http/patika/endpoints/list/types";
 import { list } from "../../services/http/patika/endpoints/list";
 
-
-const List: FC<ListProps> = (props) => {
+const List = (props: any, id: number, index: number, title: string) => {
   //yeni card ekleme
   const [value, setValue] = useState<string>("");
   const handleChange = (e: any) => {
     setValue(e.target.value);
   };
 
+  const [list, setList] = useState<any>([]);
+
   const BoardCtx = useBoardContext();
 
-  const handleAddList = (list:any) => {
+  const handleAddList = (list: any) => {
     BoardCtx.dispatches.addList(list);
   };
 
@@ -36,7 +37,7 @@ const List: FC<ListProps> = (props) => {
         title: value,
         boardId: 0,
       })
-      .then((title) => handleAddList(title.data));
+      .then((title: any) => handleAddList(title.data));
   };
 
   const handleAddCard = (card: any) => {
@@ -46,6 +47,7 @@ const List: FC<ListProps> = (props) => {
   const handleAddClick = (e: any) => {
     card
       .create({
+        id: 0,
         title: value,
         listId: 0,
       })
@@ -67,9 +69,10 @@ const List: FC<ListProps> = (props) => {
       </div>
       ;
       <div className="addNewCard">
-        <Input placeholder="List title" type="text" onChange={handleChange} />
+        <Input placeholder="Card title" type="text" onChange={handleChange} />
         <Button onClick={handleAddClick}>Save</Button>
       </div>
+      {/* <Droppable droppableId={list.id} type="card"> */}
       {BoardCtx.state.card.map((card) => (
         <CardListItem title={card.title} />
         // <div className="card-body">
@@ -83,7 +86,6 @@ const List: FC<ListProps> = (props) => {
         //   </h5>
         // </div>
       ))}
-      
       {/* <p className="card-text">label color</p>
         <h6 className="card-subtitle mb-2 text-muted">Test Card title</h6>
         <p className="card-text">date</p>
@@ -94,28 +96,8 @@ const List: FC<ListProps> = (props) => {
         <a href="#" className="card-link">
           Another link
         </a> */}
-      {/* <Draggable draggableId={id.toString()} index={order}>
-        {(provided, snapshot) => {
-          return (
-            <div
-              ref={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              style={{
-                userSelect: "none",
-                padding: 16,
-                margin: "0 0  8px 0",
-                minHeight: "50px",
-                backgroundColor: snapshot.isDragging ? "#263B4A" : "#456C86",
-                color: "white",
-                ...provided.draggableProps.style,
-              }}
-            >
-              <li>{props.title}</li>
-            </div>
-          );
-        }}
-      </Draggable> */}
+      
+      {/* </Droppable> */}
     </div>
   );
 };

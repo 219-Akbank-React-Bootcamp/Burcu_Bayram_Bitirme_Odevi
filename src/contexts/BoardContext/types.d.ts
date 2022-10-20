@@ -9,6 +9,7 @@ export type StateType = {
     }>
 
     card: Array<{
+        [x: string]: any
         title: string
         listId?: number
         description?: string

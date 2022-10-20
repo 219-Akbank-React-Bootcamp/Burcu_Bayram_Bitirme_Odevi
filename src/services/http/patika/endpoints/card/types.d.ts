@@ -4,6 +4,7 @@ export type CreateCardRequestPayload = {
     description?: string
     duedate?: string
     order?: number
+    id: number;
 }
 
 export type UpdateCardRequestPayload = {

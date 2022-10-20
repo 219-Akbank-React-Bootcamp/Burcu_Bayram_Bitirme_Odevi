@@ -6,7 +6,7 @@ import { Styled } from "./AddBoard.styled";
 const AddBoard: FC<any> = () => {
   const navigate = useNavigate();
   const handleClick = () => {
-    //board ekranına yonlendirecek - card ekleme vs
+    //board ekranına yonlendirecek - list ve card ekleme
     navigate("/board");
   };
 

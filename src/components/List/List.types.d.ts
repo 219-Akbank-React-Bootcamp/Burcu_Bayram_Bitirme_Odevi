@@ -7,11 +7,11 @@ export type ListProps = PropsWithChildren<{
     listId?: number
     boardId?: number
     order?: number
-
+    index: number
+    
 }>
 
-
-function useEffect(effect: EffectCallback, deps?: DependencyList): void;
-
-type EffectCallback = () => (void | (() => void | undefined));
-
+    
+    
+ 
+    
