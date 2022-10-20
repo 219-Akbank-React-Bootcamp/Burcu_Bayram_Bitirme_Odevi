@@ -8,10 +8,10 @@
 - Bootstrap
 - Axios
 
-### BOARD
-### LIST
-### CARD
-
+### Components 
+BOARD, LIST, CARD
+### For the backend of the application: https://github.com/haandev/patika-kanban-api (MySQL)
+To run API: Use MySQL client or run Docker and docker-compose up
 
 # Getting Started with Create React App
 
